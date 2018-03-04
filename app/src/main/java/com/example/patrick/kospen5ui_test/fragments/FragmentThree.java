@@ -8,11 +8,6 @@ import android.view.ViewGroup;
 
 import com.example.patrick.kospen5ui_test.R;
 
-/**
- * Created by Anu on 22/04/17.
- */
-
-
 
 public class FragmentThree extends Fragment {
 
