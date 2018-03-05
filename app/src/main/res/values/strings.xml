@@ -19,7 +19,7 @@
     <string name="success_message">Sign Up Successful</string>
 
     <!--String values for Birthday DatePickerDialog in EditText-->
-    <string name="hint_birthday">Pick a Date</string>
+    <string name="hint_birthday">Birthday</string>
 
     <!--String values for Gender menu in EditText-->
     <string name="hint_gender">Gender</string>
