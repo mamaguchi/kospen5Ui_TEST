@@ -11,6 +11,7 @@
     <string name="hint_email">Email</string>
     <string name="hint_age">Age</string>
     <string name="hint_password">Password</string>
+    <string name="hint_birthday">Pick a Date</string>
     <string name="text_sign_up">SIGN UP</string>
     <string name="error_message_name">Enter Full Name</string>
     <string name="error_message_email">Enter Valid Email</string>

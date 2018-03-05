@@ -1,12 +1,16 @@
 package com.example.patrick.kospen5ui_test.fragments;
 
+import android.app.DatePickerDialog;
+import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -34,6 +38,10 @@ public class FragmentTwo extends Fragment {
     //Input validator
     private ValidationHelper validation;
 
+    //DatePicker
+    private EditText editTextBirthday;
+    private DatePickerDialog datePickerDialog;
+
 
     public FragmentTwo() {
         // Required empty public constructor
@@ -47,6 +55,16 @@ public class FragmentTwo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View rootView = initViews(inflater, container);
+        initListeners();
+
+        return rootView;
+    }
+
+
+    // To initialize views objects
+    private View initViews(LayoutInflater inflater, ViewGroup container) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_two, container, false);
 
@@ -64,38 +82,39 @@ public class FragmentTwo extends Fragment {
 
         validation = new ValidationHelper(getContext());
 
-        initListeners();
+        editTextBirthday = (EditText) rootView.findViewById(R.id.edit_text_birthday);
 
         return rootView;
     }
 
-
-    // To initialize views objects
-    private void initViews() {
-//        textInputLayoutName = (TextInputLayout) findViewById(R.id.text_input_layout_name);
-//        textInputLayoutEmail = (TextInputLayout) findViewById(R.id.text_input_layout_email);
-//        textInputLayoutAge = (TextInputLayout) findViewById(R.id.text_input_layout_age);
-//        textInputLayoutPassword = (TextInputLayout) findViewById(R.id.text_input_layout_password);
-//
-//        editTextName = (EditText) findViewById(R.id.edit_text_name);
-//        editTextEmail = (EditText) findViewById(R.id.edit_text_email);
-//        editTextAge = (EditText) findViewById(R.id.edit_text_age);
-//        editTextPassword = (EditText) findViewById(R.id.edit_text_password);
-//
-//        buttonSignUp = (Button) findViewById(R.id.button_sign_up);
-
-//        validation = new ValidationHelper(this);
-
-
-    }
-
     // To initialize listeners
     private void initListeners() {
+        // SignUp Button-Listener
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 checkValidation();
+            }
+        });
+
+        // editTextBirthday EditText-Listener
+        editTextBirthday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+
+                DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        editTextBirthday.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                    }
+                };
+                datePickerDialog = new DatePickerDialog(getContext(), onDateSetListener, year, month, day);
+                datePickerDialog.show();
             }
         });
     }
@@ -119,6 +138,7 @@ public class FragmentTwo extends Fragment {
 
         Toast.makeText(getContext(), getString(R.string.success_message), Toast.LENGTH_LONG).show();
     }
+
 
 
 }
