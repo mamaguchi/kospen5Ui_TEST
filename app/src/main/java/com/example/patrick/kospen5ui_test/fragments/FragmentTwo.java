@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.patrick.kospen5ui_test.R;
@@ -38,9 +42,12 @@ public class FragmentTwo extends Fragment {
     //Input validator
     private ValidationHelper validation;
 
-    //DatePicker
+    //DatePickerDialog
     private EditText editTextBirthday;
     private DatePickerDialog datePickerDialog;
+
+    //Menu
+    private EditText editTextGender;
 
 
     public FragmentTwo() {
@@ -84,6 +91,8 @@ public class FragmentTwo extends Fragment {
 
         editTextBirthday = (EditText) rootView.findViewById(R.id.edit_text_birthday);
 
+        editTextGender = (EditText) rootView.findViewById(R.id.edit_text_gender);
+
         return rootView;
     }
 
@@ -117,6 +126,34 @@ public class FragmentTwo extends Fragment {
                 datePickerDialog.show();
             }
         });
+
+        // editTextBirthday EditText-Listener
+        editTextGender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(getContext(), v);
+
+                PopupMenu.OnMenuItemClickListener onMenuItemClickListener = new PopupMenu.OnMenuItemClickListener () {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.gender_male:
+                                editTextGender.setText(R.string.menu_male);
+                                return true;
+                            case R.id.gender_female:
+                                editTextGender.setText(R.string.menu_female);
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                };
+                popup.setOnMenuItemClickListener(onMenuItemClickListener);
+                popup.inflate(R.menu.menu_gender);
+                popup.show();
+            }
+        });
+
     }
 
     // method for validation of form on sign up button click

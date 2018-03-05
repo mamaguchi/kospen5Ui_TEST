@@ -68,7 +68,7 @@
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
 
-    <!--BEGIN - adding DatePicker-->
+    <!--BEGIN - adding DatePickerDialog in EditText-->
     <android.support.design.widget.TextInputLayout
         android:id="@+id/text_input_layout_birthday"
         android:layout_width="match_parent"
@@ -82,7 +82,23 @@
             android:focusable="false"
             android:inputType="text"/>
     </android.support.design.widget.TextInputLayout>
-    <!--END - adding DatePicker-->
+    <!--END - adding DatePickerDialog in EditText-->
+
+    <!--BEGIN - adding Menu-Gender in EditText-->
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_layout_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edit_text_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_gender"
+            android:focusable="false"
+            android:inputType="text"/>
+    </android.support.design.widget.TextInputLayout>
+    <!--END - adding Menu-Gender in EditText-->
 
     <Button
         android:id="@+id/button_sign_up"
