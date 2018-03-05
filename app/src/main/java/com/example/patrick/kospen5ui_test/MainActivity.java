@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-
 import  com.example.patrick.kospen5ui_test.fragments.FragmentOne;
 import  com.example.patrick.kospen5ui_test.fragments.FragmentThree;
 import  com.example.patrick.kospen5ui_test.fragments.FragmentTwo;
@@ -30,26 +29,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // App Bar(Toolbar)
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+        // Creating Tabs with TabLayout & ViewPager
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new FragmentOne(), "FRAG1");
         adapter.addFragment(new FragmentTwo(), "FRAG2");
         adapter.addFragment(new FragmentThree(), "FRAG3");
         viewPager.setAdapter(adapter);
-
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        // FAB (FloatingActionButton)
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "FAB Favourite clicked", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
-
             }
         });
 
